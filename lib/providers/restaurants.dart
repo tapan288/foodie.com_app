@@ -33,4 +33,12 @@ class Restaurants with ChangeNotifier {
     _items = loadedProducts;
     notifyListeners();
   }
+
+  Restaurant findById(int id) {
+    return _items.firstWhere(
+      (restaurant) {
+        return restaurant.id == id;
+      },
+    );
+  }
 }

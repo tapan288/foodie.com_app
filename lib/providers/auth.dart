@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_food_ordering/models/apiUtil.dart';
 import '../models/http_exception.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,7 +36,7 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> signup(String name, String email, String password) async {
-    const url = 'http://10.0.2.2/foodie.com/public/api/register';
+    const url = ApiUtil.Main_Api_Url + ApiUtil.register;
     try {
       final response = await http.post(
         url,
@@ -66,7 +67,7 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> login(String email, String password) async {
-    const url = 'http://10.0.2.2/foodie.com/public/api/login';
+    const url = ApiUtil.Main_Api_Url + ApiUtil.login;
 
     try {
       final response = await http.post(

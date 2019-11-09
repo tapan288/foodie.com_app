@@ -7,6 +7,7 @@ import 'product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = [];
+  List<Product> _all_products = [];
 
   List<Product> get items {
     return _items;
@@ -21,9 +22,7 @@ class Products with ChangeNotifier {
   Future<void> fetchRecentProducts() async {
     final url = ApiUtil.Main_Api_Url + ApiUtil.fetchRecentProducts;
     final response = await http.get(url);
-    // print(response.body);
     List extractedData = json.decode(response.body);
-    // print(extractedData);
     final List<Product> loadedProducts = [];
 
     extractedData.forEach((item) {
@@ -37,7 +36,6 @@ class Products with ChangeNotifier {
         restaurantId: item['restaurant_id'],
       ));
     });
-    // print(loadedProducts[0]);
     _items = loadedProducts;
     notifyListeners();
   }
@@ -47,10 +45,11 @@ class Products with ChangeNotifier {
         ApiUtil.Main_Api_Url + ApiUtil.restaurantAllProducts + id.toString();
     try {
       final response = await http.get(url);
-      List extractedData = jsonDecode(response.body);
-      final List<Product> loadedProducts = [];
-      extractedData.forEach((item) {
-        loadedProducts.add(Product(
+      // print(response.body);
+      List data = json.decode(response.body);
+      List<Product> products = [];
+      data.forEach((item) {
+        products.add(Product(
           id: item['id'],
           cuisineId: item['cuisine_id'],
           description: item['description'],
@@ -60,7 +59,32 @@ class Products with ChangeNotifier {
           restaurantId: item['restaurant_id'],
         ));
       });
-      _restaurantProducts = loadedProducts;
+      _restaurantProducts = products;
+      notifyListeners();
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> allProducts() async {
+    final url = ApiUtil.Main_Api_Url + ApiUtil.allProducts;
+    try {
+      final response = await http.get(url);
+      // print(response.body);
+      List data = json.decode(response.body);
+      List<Product> products = [];
+      data.forEach((item) {
+        products.add(Product(
+          id: item['id'],
+          cuisineId: item['cuisine_id'],
+          description: item['description'],
+          imageUrl: ApiUtil.imagePath + item['image'],
+          name: item['name'],
+          price: item['price'],
+          restaurantId: item['restaurant_id'],
+        ));
+      });
+      _all_products = products;
       notifyListeners();
     } catch (e) {
       throw e;
@@ -68,7 +92,7 @@ class Products with ChangeNotifier {
   }
 
   Product findById(int id) {
-    return _items.firstWhere(
+    return _all_products.firstWhere(
       (product) {
         return product.id == id;
       },

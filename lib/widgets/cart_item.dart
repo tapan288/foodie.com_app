@@ -91,6 +91,7 @@ class CartItemWidget extends StatelessWidget {
                   child: Image.network(
                     '${ApiUtil.imagePath}$imageUrl',
                     width: 100,
+                    height: 90,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -137,10 +138,7 @@ class CartItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Icon(Icons.delete_outline),
-                ),
+                Icon(Icons.delete_outline),
               ],
             ),
           ],

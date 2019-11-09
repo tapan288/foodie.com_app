@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../providers/cart.dart';
 import '../providers/products.dart';
-import '../widgets/small_floating_button.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -44,25 +43,20 @@ class ProductDetailScreen extends StatelessWidget {
                     children: <Widget>[
                       IconButton(
                         icon: Icon(
-                          Icons.arrow_back,
+                          Icons.arrow_back_ios,
                           color: Colors.white,
                         ),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.shop_two,
+                          Icons.favorite_border,
                           color: Colors.white,
                         ),
                         onPressed: () {},
                       ),
                     ],
                   ),
-                ),
-                Positioned(
-                  bottom: 10,
-                  right: 8,
-                  child: SmallButton(Icons.favorite),
                 ),
               ],
             ),

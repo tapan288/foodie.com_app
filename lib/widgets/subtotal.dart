@@ -72,7 +72,7 @@ class CartSubtotal extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 SizedBox(
-                  width: 150,
+                  width: 135,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0)),
@@ -90,7 +90,7 @@ class CartSubtotal extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 150,
+                  width: 135,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0)),

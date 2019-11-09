@@ -13,14 +13,25 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  Future<void> _refreshCart() async {
+    await Provider.of<Cart>(context).fetchItems();
+  }
+
   var init = true;
+  var isLoading = false;
   @override
   void didChangeDependencies() {
     if (init) {
-      Provider.of<Cart>(context).fetchItems();
-      init = false;
+      setState(() {
+        isLoading = true;
+      });
+      Provider.of<Cart>(context).fetchItems().then((_) {
+        setState(() {
+          isLoading = false;
+        });
+      });
     }
-
+    init = false;
     super.didChangeDependencies();
   }
 
@@ -32,38 +43,45 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         title: Text('Cart Items'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 25),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Text(
-              'Your Food Cart',
-              style: TextStyle(
-                fontSize: 30,
+      body: RefreshIndicator(
+        onRefresh: _refreshCart,
+        child: isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: 20),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  //   child: Text(
+                  //     'Your Food Cart',
+                  //     style: TextStyle(
+                  //       fontSize: 25,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 15,
+                  // ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: cart.items == null ? 0 : cart.items.length,
+                      itemBuilder: (ctx, index) => CartItemWidget(
+                        id: cart.items.values.toList()[index].id,
+                        imageUrl: cart.items.values.toList()[index].image,
+                        price: cart.items.values.toList()[index].price,
+                        quantity: cart.items.values.toList()[index].quantity,
+                        title: cart.items.values.toList()[index].title,
+                        productId: cart.items.keys.toList()[index],
+                      ),
+                    ),
+                  ),
+                  CartSubtotal(cart.totalamount),
+                ],
               ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: cart.items == null ? 0 : cart.items.length,
-              itemBuilder: (ctx, index) => CartItemWidget(
-                id: cart.items.values.toList()[index].id,
-                imageUrl: cart.items.values.toList()[index].image,
-                price: cart.items.values.toList()[index].price,
-                quantity: cart.items.values.toList()[index].quantity,
-                title: cart.items.values.toList()[index].title,
-                productId: cart.items.keys.toList()[index],
-              ),
-            ),
-          ),
-          CartSubtotal(cart.totalamount),
-        ],
       ),
     );
   }

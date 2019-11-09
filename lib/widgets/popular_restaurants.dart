@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_food_ordering/screens/restaurant_products.dart';
 import '../providers/restaurant.dart';
 import '../providers/restaurants.dart';
 import '../screens/popular.dart';
@@ -56,11 +57,18 @@ class PopularRestarants extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: EdgeInsets.only(right: 10.0),
-                  child: SlideItem(
-                    img: restaurants[index].image,
-                    title: restaurants[index].name,
-                    address: restaurants[index].address,
-                    rating: restaurants[index].rating.toString(),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                          RestaurantSpecificProducts.routeName,
+                          arguments: restaurants[index].id);
+                    },
+                    child: SlideItem(
+                      img: restaurants[index].image,
+                      title: restaurants[index].name,
+                      address: restaurants[index].address,
+                      rating: restaurants[index].rating.toString(),
+                    ),
                   ),
                 );
               },

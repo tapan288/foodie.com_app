@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_food_ordering/screens/restaurant_products.dart';
 import '../providers/restaurant.dart';
 import '../providers/restaurants.dart';
 import '../widgets/trending_item.dart';
@@ -77,11 +78,19 @@ class PopularRestaurantsList extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               itemCount: restaurants == null ? 0 : restaurants.length,
               itemBuilder: (BuildContext context, int index) {
-                return PopularItem(
-                  img: restaurants[index].image,
-                  title: restaurants[index].name,
-                  address: restaurants[index].address,
-                  rating: restaurants[index].rating,
+                return InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      RestaurantSpecificProducts.routeName,
+                      arguments: restaurants[index].id,
+                    );
+                  },
+                  child: PopularItem(
+                    img: restaurants[index].image,
+                    title: restaurants[index].name,
+                    address: restaurants[index].address,
+                    rating: restaurants[index].rating,
+                  ),
                 );
               },
             ),

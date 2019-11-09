@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/restaurant_products.dart';
 import 'providers/auth.dart';
 import 'providers/cart.dart';
 import 'providers/products.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Foodie.com',
           home: auth.isAuth
               ? Home()
@@ -55,6 +57,8 @@ class MyApp extends StatelessWidget {
             PopularRestaurantsList.routeName: (ctx) => PopularRestaurantsList(),
             ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
             SignupScreen.routeName: (ctx) => SignupScreen(),
+            RestaurantSpecificProducts.routeName: (ctx) =>
+                RestaurantSpecificProducts(),
           },
         ),
       ),

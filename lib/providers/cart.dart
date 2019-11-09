@@ -98,7 +98,7 @@ class Cart with ChangeNotifier {
             'Accept': 'application/json',
           },
         ).then((response) {
-          print(response.body);
+          // print(response.body);
         });
         notifyListeners();
       } catch (e) {
@@ -117,7 +117,7 @@ class Cart with ChangeNotifier {
       // );
 
     } else {
-      print(image);
+      // print(image);
       const url = ApiUtil.Main_Api_Url + ApiUtil.addToCart;
       try {
         await http.post(
@@ -136,11 +136,11 @@ class Cart with ChangeNotifier {
             'Accept': 'application/json',
           },
         ).then((response) {
-          print(response.body);
+          // print(response.body);
         });
         notifyListeners();
       } catch (e) {
-        print(e['message']);
+        // print(e['message']);
       }
 
       // _items.putIfAbsent(

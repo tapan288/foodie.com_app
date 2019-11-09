@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
     if (initialRun) {
       Provider.of<Products>(context).fetchRecentProducts();
       Provider.of<Restaurants>(context).fetchPopularRestaurants();
+      Provider.of<Products>(context).allProducts();
       initialRun = false;
     }
 
