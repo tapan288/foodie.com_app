@@ -47,7 +47,7 @@ class _RestaurantSpecificProductsState
   Widget build(BuildContext context) {
     final products = Provider.of<Products>(context).restaurantProducts;
 
-    var count = Provider.of<Cart>(context, listen: true).itemCount;
+    var count = Provider.of<Cart>(context).itemCount;
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: _refresh,

@@ -37,6 +37,7 @@ class Products with ChangeNotifier {
       ));
     });
     _items = loadedProducts;
+    // print(_items);
     notifyListeners();
   }
 

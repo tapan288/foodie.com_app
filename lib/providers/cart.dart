@@ -98,9 +98,8 @@ class Cart with ChangeNotifier {
             'Accept': 'application/json',
           },
         ).then((response) {
-          // print(response.body);
+          // notifyListeners();
         });
-        notifyListeners();
       } catch (e) {
         // print(e);
       }
@@ -136,9 +135,8 @@ class Cart with ChangeNotifier {
             'Accept': 'application/json',
           },
         ).then((response) {
-          // print(response.body);
+          // notifyListeners();
         });
-        notifyListeners();
       } catch (e) {
         // print(e['message']);
       }
@@ -155,6 +153,7 @@ class Cart with ChangeNotifier {
       // );
 
     }
+    notifyListeners();
   }
 
   void removeItem(int productId, int cartId) async {
@@ -163,10 +162,10 @@ class Cart with ChangeNotifier {
       await http.get(url).then((response) {
         print(response.body);
         _items.remove(productId);
-        notifyListeners();
       });
     } catch (e) {
       print(e);
     }
+    notifyListeners();
   }
 }

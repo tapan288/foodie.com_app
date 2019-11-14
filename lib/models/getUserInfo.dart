@@ -11,5 +11,6 @@ class UserInfo {
     }
     final extractedUserData = json.decode(prefs.getString('userData'));
     userId = extractedUserData['userId'];
+    return userId;
   }
 }

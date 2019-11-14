@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_food_ordering/providers/order.dart';
+import 'package:flutter_food_ordering/screens/orders_screen.dart';
+import 'package:flutter_food_ordering/screens/profile_screen.dart';
 import 'screens/restaurant_products.dart';
 import 'providers/auth.dart';
 import 'providers/cart.dart';
@@ -33,6 +36,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: Cart(),
         ),
+        ChangeNotifierProvider.value(
+          value: Orders(),
+        ),
       ],
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
@@ -59,6 +65,8 @@ class MyApp extends StatelessWidget {
             SignupScreen.routeName: (ctx) => SignupScreen(),
             RestaurantSpecificProducts.routeName: (ctx) =>
                 RestaurantSpecificProducts(),
+            OrdersScreen.routeName: (ctx) => OrdersScreen(),
+            ProfileScreen.routeName: (ctx) => ProfileScreen(),
           },
         ),
       ),

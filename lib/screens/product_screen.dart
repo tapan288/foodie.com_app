@@ -125,6 +125,12 @@ class ProductDetailScreen extends StatelessWidget {
                           double.parse(loadedProduct.price),
                           loadedProduct.imageUrl,
                         );
+                        // Scaffold.of(context).hideCurrentSnackBar();
+                        // Scaffold.of(context).showSnackBar(
+                        //   SnackBar(
+                        //     content: Text('Item added to the Cart'),
+                        //   ),
+                        // );
                       },
                     ),
                   ),

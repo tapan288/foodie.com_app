@@ -1,5 +1,9 @@
 class ApiUtil {
   static const Main_Api_Url = 'http://192.168.1.23/foodie.com/public/api';
+  static const PaymentMainUrl = 'http://192.168.1.23/foodie.com/public/';
+  static const PaymentUrl = 'payment/verification';
+  static const MakeOrderUrl = 'payment/makeApiOrder';
+  static const fetchOrders = '/fetchOrders/';
   static const register = '/register';
   static const login = '/login';
   static const cart = '/cart/';
