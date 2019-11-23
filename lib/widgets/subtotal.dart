@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_food_ordering/providers/order.dart';
 import 'package:flutter_khalti/flutter_khalti.dart';

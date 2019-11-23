@@ -16,7 +16,6 @@ class PopularItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // const imagePath = "http://192.168.1.23/foodie.com/public/";
     return Padding(
       padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
       child: Container(

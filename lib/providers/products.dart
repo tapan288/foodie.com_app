@@ -7,7 +7,7 @@ import 'product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = [];
-  List<Product> _all_products = [];
+  List<Product> allproducts = [];
 
   List<Product> get items {
     return _items;
@@ -85,7 +85,7 @@ class Products with ChangeNotifier {
           restaurantId: item['restaurant_id'],
         ));
       });
-      _all_products = products;
+      allproducts = products;
       notifyListeners();
     } catch (e) {
       throw e;
@@ -93,7 +93,7 @@ class Products with ChangeNotifier {
   }
 
   Product findById(int id) {
-    return _all_products.firstWhere(
+    return allproducts.firstWhere(
       (product) {
         return product.id == id;
       },

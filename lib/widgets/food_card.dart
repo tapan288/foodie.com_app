@@ -102,6 +102,7 @@ class FoodCard extends StatelessWidget {
                           double.parse(food.price),
                           food.imageUrl,
                         );
+
                         Scaffold.of(context).hideCurrentSnackBar();
                         Scaffold.of(context).showSnackBar(
                           SnackBar(

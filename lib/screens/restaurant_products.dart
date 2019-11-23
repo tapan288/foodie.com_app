@@ -93,13 +93,11 @@ class _RestaurantSpecificProductsState
                                     shape: BoxShape.circle,
                                     color: mainColor,
                                   ),
-                                  child: Consumer<Cart>(
-                                    builder: (ctx, cart, _) => Text(
-                                      cart.itemCount.toString(),
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                      ),
+                                  child: Text(
+                                    count.toString(),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ),
